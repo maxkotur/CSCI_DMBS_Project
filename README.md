@@ -1,4 +1,4 @@
-# CSCI_DMBS_Project
+# CSCI_DBMS_Project
 
 For this project we will be taking the dataset from the Events https://api.github.com/events dataset. This dataset contains a huge amount of jsons which we will be restructuring the dataset so it can be loaded into a SQL or Graph database. We have chosen to use a Graph database and we will be using python to this. The reason fro python is that python has several libraries for working with graph databases, such as Py2neo for Neo4j, and Graphene for ArangoDB. 
 
