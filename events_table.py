@@ -46,6 +46,28 @@ cur.execute('''CREATE TABLE IF NOT EXISTS release_payload
                (event_id INTEGER, repo_id INTEGER, action TEXT, name TEXT, tag_name TEXT, PRIMARY KEY(event_id),
                 FOREIGN KEY(event_id) REFERENCES events(id))''')
 
+cur.execute('''CREATE TABLE IF NOT EXISTS org
+               (event_id INTEGER PRIMARY KEY,
+                org_id INTEGER,
+                login TEXT,
+                gravatar_id TEXT,
+                url TEXT,
+                avatar_url TEXT)''')
+
+# loop through each event and extract org data
+for event in json_data:
+    if 'org' in event and event['org'] is not None:
+        org_id = event['org'].get('id')
+        login = event['org'].get('login')
+        gravatar_id = event['org'].get('gravatar_id')
+        url = event['org'].get('url')
+        event_id = event['id']
+        avatar_url = event['org'].get('avatar_url')
+        
+        # insert org data into org table
+        cur.execute("INSERT INTO org (event_id, org_id, login, gravatar_id, url, avatar_url) VALUES (?, ?, ?, ?, ?, ?)",
+                    (event_id, org_id, login, gravatar_id, url, avatar_url))
+
 # Loop through the data and insert into the appropriate table
 for event in json_data:
     event_id = event["id"]
@@ -100,6 +122,7 @@ for event in json_data:
     # insert the data into the events table
     cur.execute("INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 (event_id, event_type, actor_id, repo_id, payload_id, public, created_at, org_id))
+
 
 # commit changes and close the connection
 conn.commit()
