@@ -12,7 +12,7 @@ conn = sqlite3.connect('github_events.db')
 cur = conn.cursor()
 
 # create the events table
-cur.execute("""CREATE TABLE actor (
+cur.execute("""'CREATE TABLE IF NOT EXISTS actor (
                 event_id INTEGER PRIMARY KEY,
                 actor_id INTEGER,
                 login TEXT,
@@ -22,7 +22,7 @@ cur.execute("""CREATE TABLE actor (
                 avatar_url TEXT
             )""")
 
-cur.execute("""CREATE TABLE events (
+cur.execute("""'CREATE TABLE IF NOT EXISTS events (
                 event_id INTEGER PRIMARY KEY,
                 event_type TEXT,
                 actor_id INTEGER,
