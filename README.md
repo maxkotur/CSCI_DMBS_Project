@@ -8,3 +8,6 @@ After that, for each node in the JSON data, we will create a corresponding node 
 
 Please give us any suggestions or things that we could add.
 Thank you.
+
+Here are the slides for the presentation:
+# https://docs.google.com/presentation/d/1ItgLWj-AeQUp7Aw7RLaNI7VWalgrsyWA8p7I7DH9BJg/edit#slide=id.g23784840e88_0_18
